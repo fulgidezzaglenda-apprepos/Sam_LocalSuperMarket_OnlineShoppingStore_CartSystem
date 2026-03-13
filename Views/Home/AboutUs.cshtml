@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "AboutUs";
+}
+
+<div class="d-flex row">
+	<div class="text-center cols-1" id="example2">
+		<h2 class="theme-text"> Welcome to Sam's Local Supermarket </h2>
+		<hr />
+	</div>
+
+	<div>
+		<!-- Redirect back to the Home Page -->
+		@Html.ActionLink("Back to Home Page", "Index", "Home")
+	</div>
+
+	<div>
+		<iframe class="AboutUs" width="942" height="530" src="https://www.youtube.com/embed/iUtnZpzkbG8" |
+				frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture;" 
+				style="display: flex; justify-content: center; align-items: center;"></iframe>
+	</div>
+
+	<div class="text-center cols-1">
+		 <h3 class="theme-text"> About Us </h3>
+		 <p class="theme-text" style="font-size:larger; font-style:italic; font-display:block">
+			"At Sam's Local Supermarket we made shopping easy. We believe that great communities start with great food. As your neighborhood 
+			 supermarket, we are committed to providing you with a diverse selection of fresh, high-quality products that meet the needs of your 
+			 unique lifestyle. Our shelves are stocked with care, our team is dedicated to service, and our passion lies in serving you. From 
+			 farm-fresh produce to pantry staples, we are here to make every meal memorable. Welcome to your local supermarket, where community
+			 and quality come together on every aisle."
+		 </p>
+	</div>
+
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
+

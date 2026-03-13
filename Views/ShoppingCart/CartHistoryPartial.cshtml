@@ -1,0 +1,18 @@
+﻿@model Tuple<List<Sam_LocalSuperMarket_OnlineShoppingStore1.Models.ShoppingCart>,
+List<Sam_LocalSuperMarket_OnlineShoppingStore1.Models.ShoppingCart>>
+
+@{
+    ViewData["Title"] = "CartHistoryPartial";
+}
+
+@{
+    await Html.RenderPartialAsync("_CartDetailsPartial", Model);
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+@{
+    var date = DateTime.Now;
+}
+
+@* <h1 class="theme-text">@ViewData["Title"]</h1> *@
+
+@* <p class="theme-text">Use this page to detail your site's privacy policy.</p> *@
+
+<h2 class="theme-text">Privacy Policy</h2>
+
+<div class="privacy-container theme-text">
+    <p>Effective Date: @date.ToString("dd MMMM yyy, hh:mm tt")</p>
+
+    <section id="introduction">
+        <h3>Introduction</h3>
+        <p>Your privacy is important to us. This privacy policy explains what personal data we collect from you, how we use it, and how we protect it. 
+            By using our website and services, you agree to the collection and use of information in accordance with this policy.</p>
+    </section>
+
+    <section id="information-collection">
+        <h3>Information We Collect</h3>
+        <p>We collect various types of information in connection with the services we provide, including:</p>
+        <ul>
+            <li><strong>Personal Identification Information:</strong> Name, email address, phone number, etc.</li>
+            <li><strong>Technical Data:</strong> IP address, browser type, operating system, etc.</li>
+            <li><strong>Usage Data:</strong> Information about how you use our website and services.</li>
+        </ul>
+    </section>
+
+    <section id="use-of-information">
+        <h3>How We Use Your Information</h3>
+        <p>We use the information we collect in various ways, including to:</p>
+        <ul>
+            <li>Provide, operate, and maintain our website and services</li>
+            <li>Improve, personalize, and expand our website and services</li>
+            <li>Understand and analyze how you use our website and services</li>
+            <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and
+                other information relating to the website, and for marketing and promotional purposes</li>
+            <li>Process your transactions</li>
+            <li>Find and prevent fraud</li>
+        </ul>
+    </section>
+
+    <section id="information-sharing">
+        <h3>Sharing Your Information</h3>
+        <p>We may share your information with third parties only in the following circumstances:</p>
+        <ul>
+            <li>With your consent</li>
+            <li>For external processing by trusted partners who adhere to our privacy policy</li>
+            <li>To comply with legal obligations and protect our rights</li>
+        </ul>
+    </section>
+
+    <section id="security">
+        <h3>Security of Your Information</h3>
+        <p>We take the security of your information seriously and implement appropriate technical and organizational measures to protect your personal data. 
+            However, please be aware that no method of transmission over the internet or method of electronic storage is completely secure.</p>
+    </section>
+
+    <section id="your-rights">
+        <h3>Your Data Protection Rights</h3>
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <ul>
+            <li>The right to access – You have the right to request copies of your personal data.</li>
+            <li>The right to rectification – You have the right to request that we correct any information you believe is inaccurate or complete information you 
+                believe is incomplete.</li>
+            <li>The right to erasure – You have the right to request that we erase your personal data, under certain conditions.</li>
+            <li>The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain 
+                conditions.</li>
+            <li>The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</li>
+            <li>The right to data portability – You have the right to request that we transfer the data that we have collected to another organization, or directly
+                to you, under certain conditions.</li>
+        </ul>
+        <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us at our provided contact
+            information.</p>
+    </section>
+
+    <section id="contact-info">
+        <h3>Contact Us</h3>
+        <p>If you have any questions about this privacy policy, the data we hold on you, or you would like to exercise one of your data protection rights, please do 
+            not hesitate to contact us:</p>
+        <ul>
+            <li><strong>Email:</strong> uptownITinc@privacy.com</li>
+            <li><strong>Phone:</strong> 1-800-123-4567</li>
+            <li><strong>Address:</strong> 1234 Privacy St, Secure City, SC 12345</li>
+        </ul>
+    </section>
+</div>
+
+<style>
+    .privacy-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+    section {
+        margin-bottom: 20px;
+    }
+</style>

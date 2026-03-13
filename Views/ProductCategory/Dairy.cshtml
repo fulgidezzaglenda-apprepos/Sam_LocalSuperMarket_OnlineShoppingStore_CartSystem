@@ -1,0 +1,114 @@
+﻿@using Sam_LocalSuperMarket_OnlineShoppingStore1.Models
+
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Dairy";
+
+    // Retrieve the last products search from session state, or set it to an empty string if it's null
+    string lastSearch = Context.Session.GetString("LastProductsSearch") ?? "";
+
+    // Clear the last products search in session state
+    Context.Session.SetString("LastProductsSearch", "");
+}
+
+<!--Creates a right floated container-->
+<div style="float:inline-end" id="showSearchForm">
+    <!--Creates a medium column with a width of 9/12 its parent-->
+    <div class="col-md-9">
+        <!--Create a form which will trigger the ShowSearchResults action event-->
+        <form asp-action="ShowSearchResults">
+            <div class="form-group">
+                <label for="SearchPhrase">Search for:</label>
+                <!-- Set the value of the search phrase input to the last products search -->
+                <input name="SearchPhrase" value="@lastSearch" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- Create a submit button to submit the search form -->
+                <input type="submit" value="Search" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2 class="theme-text"> Dairies </h2>
+<h5 class="theme-text">"Life's too short to cry over spilled milk. Unless it's chocolate milk, then go ahead and shed a tear." 😄🥛!</h5>
+<hr />
+
+<div>
+    @Html.ActionLink("Back to List", "Category", "Home")
+</div>
+
+<div class="card-container row" style="display:flex; justify-content:center; align-items:center;">
+    @foreach (var products in Model)
+    {
+        <div class="single-card card shadow m-2 text-center" style="width: 18rem; height: 20rem; object-fit:cover; background-color:lightskyblue;
+                    display:flex; justify-content:center; align-items:center;">
+            <div>
+                @if (products.ItemName == "A2 Light Milk")
+                {
+                    <img src="~/ImageItem/Dairy1.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Babybel Mini")
+                {
+                    <img src="~/ImageItem/Dairy2.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Bega Farmers Tasty")
+                {
+                    <img src="~/ImageItem/Dairy3.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Chobani Strawbery Yoghurt")
+                {
+                    <img src="~/ImageItem/Dairy4.png" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Lurpak Salted Blend")
+                {
+                    <img src="~/ImageItem/Dairy5.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Manning Valley Eggs")
+                {
+                    <img src="~/ImageItem/Dairy6.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Philadelphia Original Cream Cheese")
+                {
+                    <img src="~/ImageItem/Dairy7.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "South Cape Greek Feta")
+                {
+                    <img src="~/ImageItem/Dairy8.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/js/products.js" asp-append-version="true"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,358 @@
+﻿@model Sam_LocalSuperMarket_OnlineShoppingStore1.Models.ShoppingCart
+
+ <div class="text-center cols-1" style="background-color:navajowhite" id="example1">
+    <h4 style="color:darkorange"> Sam's Local Supermarket </h4>
+    <h6>Shopping Made Easy!</h6>
+</div>
+
+<h5 style="background-color:navajowhite">Shopping Cart Details</h5>
+<hr />
+<div style="background-color:navajowhite">
+    @if (Model != null)
+    {
+        <form class="item-qty-form d-flex justify-content-between m-1">
+            @{
+                <p> Shopping Cart ID: @Model.Id</p>
+                @if (Model.IsFinalised)
+                {
+                    <p> Date Finalized: @Model.Date?.ToShortDateString()</p>
+                }
+                else if (Model.IsCancelled)
+                {
+                    <p> Date Cancelled: @Model.Date?.ToShortDateString()</p>
+                }
+                <p> Total Cart Sale: $@Model.Total</p>
+            }
+        </form>
+    }
+    else
+    {
+        <p>Shopping cart details are not available.</p>
+    }
+</div>
+
+<h5 style="background-color:lightgoldenrodyellow">Cart Items</h5>
+
+@if (Model != null && Model.CartItems != null)
+{
+    <div class="container overflow-auto h-75" style="background-color:lightgoldenrodyellow">
+        @foreach (var item in Model.CartItems)
+        {
+            <div class="card p-1" style="background-color:lemonchiffon">
+                <p>@(item.ProductsItem?.ItemName), @(item.ProductsItem?.Unit)</p>
+                <div class="row">
+
+                    <form class="item-qty-form d-flex justify-content-between m-1">
+                        @{
+                            if (item.ProductsItem?.ItemName == "Arnott's Scotch Finger")
+                            {
+                                <img src="~/ImageItem/Baked1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Arnott's TimTam Original Chocolate")
+                            {
+                                <img src="~/ImageItem/Baked2.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Cheddar Shapes")
+                            {
+                                <img src="~/ImageItem/Baked3.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Helga's Wholemeal Bread")
+                            {
+                                <img src="~/ImageItem/Baked4.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Weet Bix Saniatatium")
+                            {
+                                <img src="~/ImageItem/Baked5.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Berri Orange Juice")
+                            {
+                                <img src="~/ImageItem/Beverage1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Coca Cola")
+                            {
+                                <img src="~/ImageItem/Beverage2.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Macro Free Range Chicken")
+                            {
+                                <img src="~/ImageItem/ColdMeat1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Primo English Ham")
+                            {
+                                <img src="~/ImageItem/ColdMeat2.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Primo Short Cut Rindless Bacon")
+                            {
+                                <img src="~/ImageItem/ColdMeat3.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "A2 Light Milk")
+                            {
+                                <img src="~/ImageItem/Dairy1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Babybel Mini")
+                            {
+                                <img src="~/ImageItem/Dairy2.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Bega Farmers Tasty")
+                            {
+                                <img src="~/ImageItem/Dairy3.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Chobani Strawbery Yoghurt")
+                            {
+                                <img src="~/ImageItem/Dairy4.png" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Lurpak Salted Blend")
+                            {
+                                <img src="~/ImageItem/Dairy5.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Manning Valley Eggs")
+                            {
+                                <img src="~/ImageItem/Dairy6.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Philadelphia Original Cream Cheese")
+                            {
+                                <img src="~/ImageItem/Dairy7.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "South Cape Greek Feta")
+                            {
+                                <img src="~/ImageItem/Dairy8.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Carrots")
+                            {
+                                <img src="~/ImageItem/FreshFoods1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Cucumber")
+                            {
+                                <img src="~/ImageItem/FreshFoods2.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Fresh Tomato")
+                            {
+                                <img src="~/ImageItem/FreshFoods3.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Granny Smith's Apples")
+                            {
+                                <img src="~/ImageItem/FreshFoods4.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Iceberg Lettuce")
+                            {
+                                <img src="~/ImageItem/FreshFoods5.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Red Onion")
+                            {
+                                <img src="~/ImageItem/FreshFoods6.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Red Potato Washed")
+                            {
+                                <img src="~/ImageItem/FreshFoods7.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Red Tipped Bananas")
+                            {
+                                <img src="~/ImageItem/FreshFoods8.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Watermelon")
+                            {
+                                <img src="~/ImageItem/FreshFoods9.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Birds Eye Fish Fingers")
+                            {
+                                <img src="~/ImageItem/Frozen1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Cadburry Dairy Milk")
+                            {
+                                <img src="~/ImageItem/Pantry01.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Capilano Squeezable Honey")
+                            {
+                                <img src="~/ImageItem/Pantry02.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Cobram Extra Virgin Olive Oil")
+                            {
+                                <img src="~/ImageItem/Pantry03.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Golden Circle Pineapple Pieces in natural juice")
+                            {
+                                <img src="~/ImageItem/Pantry04.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Heinz Tomato Soup")
+                            {
+                                <img src="~/ImageItem/Pantry05.jpgstyle=" width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "John West Tuna can")
+                            {
+                                <img src="~/ImageItem/Pantry06.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Lindt Excellence 70% cocoa Block")
+                            {
+                                <img src="~/ImageItem/Pantry07.png" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Milo Chocolate Malt")
+                            {
+                                <img src="~/ImageItem/Pantry08.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Moccana Classic Instant Medium Roast")
+                            {
+                                <img src="~/ImageItem/Pantry09.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Nutella Jar")
+                            {
+                                <img src="~/ImageItem/Pantry10.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Sacla Pasta Tomato Basil Sauce")
+                            {
+                                <img src="~/ImageItem/Pantry11.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "San Remo Linguine Pasta No. 1")
+                            {
+                                <img src="~/ImageItem/Pantry12.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Smith's Original Share Pack Crisps")
+                            {
+                                <img src="~/ImageItem/Pantry13.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Vegemite")
+                            {
+                                <img src="~/ImageItem/Pantry14.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                            else if (item.ProductsItem?.ItemName == "Colgate Total Toothpaste Original")
+                            {
+                                <img src="~/ImageItem/SelfCare1.jpg" style="width: 50px; height: 50px;" />
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <p class="qty" name="Quantity">@item.Quantity</p>
+                                <p class="lineTotal mx-3" value="@item.ProductsItem.Price"> Total: $@(item.ProductsItem.Price * item.Quantity)</p>
+                            }
+                        }
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p> No items found in the cart.</p>
+}

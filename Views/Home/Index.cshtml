@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    string name = Context.Session.GetString("Name") ?? "Guest";
+    int viewed = Context.Session.GetInt32("Viewed") ?? -1;
+}
+
+<div class="text-center">
+    
+    <a class="add-button-item btn btn-success bg-transparent theme-text" style="font-size:x-large;" 
+               asp-area="" asp-controller="Home" asp-action="Category"> Shop Now </a>
+    <a class="add-button-item btn btn-success bg-transparent theme-text" style="font-size:x-large;"
+               asp-area="" asp-controller="Home" asp-action="AboutUs"> More About Us </a>
+    <hr />
+
+    <div>
+        <img src="~/Image/a.jpg" style="width: 950px; height: 650px; object-fit: cover; display:flex; justify-content: center; 
+                    align-items: center; margin: auto; padding: 0;" />
+    </div>
+</div>
+    
+
+
+
+
+
+

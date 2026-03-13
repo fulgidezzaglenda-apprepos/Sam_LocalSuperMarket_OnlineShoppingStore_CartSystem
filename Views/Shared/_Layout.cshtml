@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+ @using Microsoft.AspNetCore.Http;
+@{
+    //Gets our current theme selection form the Session and sets it in a variable.
+    //If it doesn't exist the variable will default to Dark.
+    string themeSetting = Context.Session.GetString("Theme") ?? "Light";
+    int Id = Context.Session.GetInt32("ID") ?? -1;
+
+    //Checks whether the current user is logged in or not.
+    bool Authenticated = Context.User != null && Context.User.Identity.IsAuthenticated;
+    bool isAdmin = Context.User.IsInRole("Admin");
+    var user = Context.User.Identity.Name;
+    string SessionId = Context.Session.Id;
+}
+
+@{
+    if (themeSetting.Equals("Dark"))
+    {
+        <link rel="stylesheet" href="~/css/themes/dark-theme.css" id="themeStyle" />
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/css/themes/light-theme.css" id="themeStyle" />
+    }
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sam_LocalSuperMarket_OnlineShoppingStore1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Sam_LocalSuperMarket_OnlineShoppingStore1.styles.css" asp-append-version="true" />
+</head>
+
+<body class="bg-theme-colour-4">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-sm theme-colour-2 bg-theme-colour-0 border-bottom box-shadow mb-5"/>
+            <div style="padding-left: 75px">
+                <img class='spin-item' src="~/Image/SW1.png" />
+            </div>
+
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link theme-text" style="font-size:x-large;"
+                                asp-area="" asp-controller="Home" asp-action="Index">Home    |</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link theme-text" style="font-size:x-large;"
+                                asp-area="" asp-controller="Home" asp-action="Privacy">Privacy   |</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link theme-text" style="font-size:x-large;"
+                           asp-area="" asp-controller="Home" asp-action="CustomerSupport">Customer Support   |</a>
+                    </li>
+
+                    @{
+                        if (Authenticated)
+                        {
+                            <li>
+                                <a class="nav-link theme-text" style="font-size:x-large;"
+                                   asp-area="" asp-controller="Home" asp-action="AboutUs"> More About Us    |</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link theme-text" style="font-size:x-large;"
+                                   asp-area="" asp-controller="Home" asp-action="CartHistory"> Order History   </a>
+                            </li>
+                        }
+                    }
+                    </ul>
+                </div>
+
+                <!--Div to setup our colour theme button-->
+                <div class="d-flex justify-content-end">
+                    <input type="button" class="btn btn-success m-2" value="Theme Setting" id="btnTheme" />
+                </div>
+
+                <div style="padding-right: 75px">
+                    @{
+                        //Determine which buttons show based upon wheteher the user is authenticated or not.
+                        if (Authenticated && Id > 0) 
+                        {
+                            <a class="btn btn-danger mx-1" asp-controller="UserLogin" asp-action="LogOff">Sign Off</a>
+
+                            <button type="button" id="btnCartModal" class="btn btn-success">CART</button>
+                        }
+
+                        else
+                        {
+                            <!-- OLD VERSION OF LOGIN BUTTON
+                             <a class="btn btn-success mx-1" asp-controller="Login" asp-action="Login">Login</a>
+                             -->
+                            @Html.ActionLink("Sign In","UserLogin","UserLogin",new{returnUrl=Context.Request.Path.ToString()}, new {@class="btn btn-success mx-1"})
+                            // <a class="btn btn-primary mx-1" asp-controller="UserLogin" asp-action="CreateUser">Sign Up</a>
+                        }
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Sam_LocalSuperMarket_OnlineShoppingStore1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+     <!--Modal for our shopping cart that will hold our _ShoppingCartPartial view-->
+    <div class="modal right fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalTitle" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content" style="background-color:navajowhite">
+                <div class="modal-header" style="background-color:khaki">
+                    <h5 class="modal-title" id="cartModalTitle">
+                        Customer's Cart: @if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="user-name">@User.Identity.Name</span>
+                        } 
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color:black" id="cartModalBody">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/shoppingcart.js" asp-append-version="true"></script>
+    <script src="~/js/cartdetails.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@using Sam_LocalSuperMarket_OnlineShoppingStore1.Models
+
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Pantry";
+
+    // Retrieve the last products search from session state, or set it to an empty string if it's null
+    string lastSearch = Context.Session.GetString("LastProductsSearch") ?? "";
+
+    // Clear the last products search in session state
+    Context.Session.SetString("LastProductsSearch", "");
+}
+
+<!--Creates a right floated container-->
+<div style="float:inline-end" id="showSearchForm">
+    <!--Creates a medium column with a width of 9/12 its parent-->
+    <div class="col-md-9">
+        <!--Create a form which will trigger the ShowSearchResults action event-->
+        <form asp-action="ShowSearchResults">
+            <div class="form-group">
+                <label for="SearchPhrase">Search for:</label>
+                <!-- Set the value of the search phrase input to the last products search -->
+                <input name="SearchPhrase" value="@lastSearch" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- Create a submit button to submit the search form -->
+                <input type="submit" value="Search" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2 class="theme-text"> Dry Goods </h2>
+<h5 class="theme-text">"Buying dry goods at the supermarket is like collecting pantry treasures for the impending zombie apocalypse 
+     – one bag of rice at a time!" 😄🛒🍚!</h5>
+<hr />
+
+<div>
+    @Html.ActionLink("Back to List", "Category", "Home")
+</div>
+
+<div class="card-container row" style="display:flex; justify-content:center; align-items:center;">
+    @foreach (var products in Model)
+    {
+        <div class="single-card card shadow m-2 text-center" style="width: 18rem; height: 20rem; object-fit:cover; background-color:lightskyblue;
+                    display:flex; justify-content:center; align-items:center;">
+            <div>
+                @if (products.ItemName == "Cadburry Dairy Milk")
+                {
+                    <img src="~/ImageItem/Pantry01.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Capilano Squeezable Honey")
+                {
+                    <img src="~/ImageItem/Pantry02.jpg" style="width:65px; height:135px; object-fit:cover;" 
+                            class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Cobram Extra Virgin Olive Oil")
+                {
+                    <img src="~/ImageItem/Pantry03.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Golden Circle Pineapple Pieces in natural juice")
+                {
+                    <img src="~/ImageItem/Pantry04.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Heinz Tomato Soup")
+                {
+                    <img src="~/ImageItem/Pantry05.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "John West Tuna can")
+                {
+                    <img src="~/ImageItem/Pantry06.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Lindt Excellence 70% cocoa Block")
+                {
+                    <img src="~/ImageItem/Pantry07.png" style="width:65px; height:135px; object-fit:cover;"
+                            class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Milo Chocolate Malt")
+                {
+                    <img src="~/ImageItem/Pantry08.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Moccana Classic Instant Medium Roast")
+                {
+                    <img src="~/ImageItem/Pantry09.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Nutella Jar")
+                {
+                    <img src="~/ImageItem/Pantry10.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Sacla Pasta Tomato Basil Sauce")
+                {
+                    <img src="~/ImageItem/Pantry11.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "San Remo Linguine Pasta No. 1")
+                {
+                    <img src="~/ImageItem/Pantry12.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Smith's Original Share Pack Crisps")
+                {
+                    <img src="~/ImageItem/Pantry13.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+                else if (products.ItemName == "Vegemite")
+                {
+                    <img src="~/ImageItem/Pantry14.jpg" class="product-image" />
+                    <h5>@products.ItemName</h5>
+                    <h6>@products.Unit | $@products.Price</h6>
+                    <a id="btnCreate" class="add-item-button btn btn-success" value="@products.Id">Add To Cart</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/js/products.js" asp-append-version="true"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

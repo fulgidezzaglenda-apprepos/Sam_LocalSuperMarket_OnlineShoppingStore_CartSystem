@@ -1,0 +1,366 @@
+
+.theme-text {
+    color: var(--theme-text)
+}
+
+/*Colour classes based upon our theme colours from our current theme variables*/
+.theme-colour-0 {
+    color: var(--theme-colour-0)
+}
+
+.theme-colour-1 {
+    color: var(--theme-colour-1)
+}
+
+.theme-colour-2 {
+    color: var(--theme-colour-2)
+}
+
+.theme-colour-3 {
+    color: var(--theme-colour-3)
+}
+
+.theme-colour-4 {
+    color: var(--theme-colour-4)
+}
+
+/*Background Colour classes based upon our theme colours from our current theme variables*/
+.bg-theme-colour-0 {
+    background-color: var(--theme-colour-0)
+}
+
+.bg-theme-colour-1 {
+    background-color: var(--theme-colour-1)
+}
+
+.bg-theme-colour-2 {
+    background-color: var(--theme-colour-2)
+}
+
+.bg-theme-colour-3 {
+    background-color: var(--theme-colour-3)
+}
+
+.bg-theme-colour-4 {
+    background-color: var(--theme-colour-4)
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.AboutUs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Custom classes with no style settings to use as 'Tags' to identify the type of button they are.
+This can be used to find them in our JavaScript when we have more than one.*/
+.delete-Button 
+{
+
+}
+.edit-Button 
+{
+
+}
+.details-Button 
+{
+
+}
+
+.minus-button 
+{
+
+}
+
+.plus-button 
+{
+
+}
+
+.item-qty-form 
+{
+
+}
+
+.qty 
+{
+
+}
+
+.clear-button
+{
+
+}
+
+.remove-button {
+    border-radius: 15px / 50px;
+    /*background: #73AD21;*/
+    padding: 20px;
+    width: 100px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+
+.add-item-button {
+    border-radius: 15px 50px;
+    background: #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    border: 3px solid green;
+}
+
+/*.view-cart-button {
+    border-radius: 15px / 50px;*/
+    /*background: #73AD21;*/
+    /*padding: 20px;
+    width: 220px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+.view-cart-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+    .view-cart-button:hover {
+        background-color: #3e8e41
+    }
+
+    .view-cart-button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+.add-button-item {
+    border-radius: 15px / 50px;
+    /*background: #73AD21;*/
+    padding: 20px;
+    width: 220px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-item-add {
+    border-radius: 15px / 50px;
+    /*background: #73AD21;*/
+    padding: 20px;
+    width: 125px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#example1 {
+    background: url(../Image/logo.jpg);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    padding: 15px;
+}
+
+#example2 {
+    background: url(../Image/logo.jpg);
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    padding-left: 150px;
+}
+
+#showSearchForm {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    text-align:left;
+}
+
+/*Classes for our shopping cart modal*/
+/*This style will apply to any modal dialog inside a class with both the modal and right classes*/
+.modal.right .modal-dialog {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    min-with: 50%;
+    height: 100%;
+}
+
+/*This is style will apply to any modal content*/
+.modal.right .modal-content {
+    height: 100%;
+    /*overflow-y: auto;*/
+}
+
+.details.right .details-dialog {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    min-with: 50%;
+    height: 100%;
+}
+
+.details.right .details-content {
+    height: 100%;
+}
+
+footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    line-height:60px;
+    text-align:center;
+}
+
+#btnCheckOut {
+    color:black;
+    background-color:cornflowerblue;
+}
+
+#btnClearCart {
+    color: black;
+    background-color: cornflowerblue;
+}
+
+.cartfooter {
+    position: fixed;
+    bottom: 0;
+    width: 395px;
+    line-height: 2.5rem;
+}
+
+div.spin-container {
+ /*   display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; */
+}
+
+.spin-item {
+    width: 75px;
+    height: 100px;
+    animation-name: flip-scale-down-hor;
+    /*time it takes to complete the animation*/
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    /*time from when the program opens to when the animation starts*/
+    animation-delay: 0s;
+    /*how many times it loops*/
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    /* shorthand
+		animation: flip-scale-down-hor 2s linear 0s infinite normal none;*/
+}
+
+@keyframes flip-scale-down-hor {
+
+    0% {
+        transform: scale(1) rotateX(0);
+    }
+
+    25% {
+        transform: scale(.4) rotateX(90deg);
+    }
+
+    50% {
+        transform: scale(1) rotateX(180deg);
+    }
+
+    75% {
+        transform: scale(.4) rotateX(90deg);
+    }
+
+    100% {
+        transform: scale(1) rotateX(0);
+    }
+}
+
+@keyframes animspin {
+    from {
+        transform:rotate(0deg)
+    }
+    to {
+        transform:rotate(360deg)
+    }
+}
+
+.product-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    opacity:1;
+    object-fit:contain;
+    background: transparent;
+}
+
+.homepage-img {
+    * {
+          margin: 0;
+          padding: 0;
+      }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    img {
+        width: 200px;
+        height: 125px;
+        object-fit: cover;
+    }
+}
+
+.fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove (internal value);
+}
+
+.tr:hover {
+    background-color: #D6EEEE;
+}

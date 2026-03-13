@@ -1,0 +1,117 @@
+﻿@using Sam_LocalSuperMarket_OnlineShoppingStore1.Data;
+@model IEnumerable<ProductCategory>
+
+@{
+    ViewData["Title"] = "Home Page";
+    string name = Context.Session.GetString("Name") ?? "Guest";
+    int viewed = Context.Session.GetInt32("Viewed") ?? -1;
+
+    // Retrieve the last products search from session state, or set it to an empty string if it's null
+    string lastSearch = Context.Session.GetString("LastProductsSearch") ?? "";
+
+    // Clear the last products search in session state
+    Context.Session.SetString("LastProductsSearch", "");
+
+}
+
+<!--Creates a right floated container-->
+<div style="float:inline-end" id="showSearchForm">
+    <!--Creates a medium column with a width of 9/12 its parent-->
+    <div class="col-md-9">
+        <!--Create a form which will trigger the ShowSearchResults action event-->
+        <form asp-action="ShowSearchResults">
+            <div class="form-group">
+                <label for="SearchPhrase">Search for:</label>
+                <!-- Set the value of the search phrase input to the last products search -->
+                <input name="SearchPhrase" value="@lastSearch" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- Create a submit button to submit the search form -->
+                <input type="submit" value="Search" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center cols-1" id="example2">
+    <h2 class="theme-text">Welcome to Sam's Local Supermarket</h2>
+    <h4 class="theme-text">Start your shoping now!</h4>
+    <hr />
+</div>
+
+<div>
+    <!-- Redirect back to the Home Page -->
+    @Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>
+
+<div class="card-container row" style="display:flex; justify-content:center; align-items:center;">
+    @foreach (var prodCat in Model)
+    {
+        <div class="single-card card shadow m-2 text-center" style="width: 18rem; height: 20rem; object-fit:cover; background-color:skyblue;
+                     display:flex; justify-content:center; align-items:center;">
+
+            <div class="row">
+                <form>
+                    @{
+                        @if (prodCat.CategoryName == "Baked")
+                        {
+                            <img src="~/ImageCategory/Baked.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Baked Goods", "Baked", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "Beverage")
+                        {
+                            <img src="~/ImageCategory/Beverage.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Cold Beverage", "Beverage", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "ColdMeat")
+                        {
+                            <img src="~/ImageCategory/ColdMeat.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Cold Meat and Deli", "ColdMeat", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "Dairy")
+                        {
+                            <img src="~/ImageCategory/Dairy.png" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Dairies", "Dairy", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "FreshFoods")
+                        {
+                            <img src="~/ImageCategory/FreshFoods.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Fresh Produces", "FreshFoods", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "Frozen")
+                        {
+                            <img src="~/ImageCategory/Frozen.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Frozen Delights", "Frozen", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "Pantry")
+                        {
+                            <img src="~/ImageCategory/Pantry.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Dry Goods", "Pantry", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                        else if (prodCat.CategoryName == "SelfCare")
+                        {
+                            <img src="~/ImageCategory/SelfCare.jpg" style="width:250px; height:150px; object-fit:cover; display:flex;
+                                justify-content:center; align-items:center;" />
+                            @Html.ActionLink("Personal and Beauty Care", "SelfCare", "ProductCategory", new { id = prodCat.Id }, new { @class = "btn btn-primary m-2" })
+                        }
+                    }
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/js/products.js" asp-append-version="true"></script>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

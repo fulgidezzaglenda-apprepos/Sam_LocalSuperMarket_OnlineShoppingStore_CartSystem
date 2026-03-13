@@ -1,0 +1,50 @@
+﻿@model Sam_LocalSuperMarket_OnlineShoppingStore1.Data.UserDTO
+
+@{
+	ViewData["Title"] = "UserLogin";
+	var message = ViewBag.LoginError ?? "";
+}
+<h4 class="theme-text">Login to your Account now!</h4>
+<h2 class="text-danger">@message</h2>
+<hr />
+<div class="row">
+    <form class="item-qty-form d-flex justify-content-md-start">
+        <div style="padding-left: 5px">
+            <img class='spin-item' src="~/Image/SW1.png" />
+        </div>
+        <h3 class="theme-text"> Welcome to Sam's Local Supermarket </h3>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UserLogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--Gets the Return url from the model when the view is created and puts it in a hidden
+            field. This will be returned back with the rest of the form data once submitted.-->
+            <input type="hidden" asp-for="ReturnUrl" value="@Model.ReturnUrl" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label theme-text" style="font-size:x-large; font-style:italic;"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label theme-text" style="font-size:x-large; font-style:italic;"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-left:15px; padding-top:10px;">
+                <input type="submit" value="Log in" class="btn btn-primary" />
+                <a class="btn btn-primary mx-1" asp-controller="UserLogin" asp-action="CreateUser"> Register </a>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to Home</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

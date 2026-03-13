@@ -1,0 +1,12 @@
+﻿/*Variables for our main theme colours*/
+:root {
+    /* Main Primary color */
+    --theme-colour-0: #002db3;
+    /* Light Shades */
+    --theme-colour-1: #0039ec;
+    --theme-colour-2: #0066ff;
+    /* Lighter Shades */
+    --theme-colour-3: #0080ff;
+    --theme-colour-4: #0099ff;
+    --theme-text: #d6d1f5
+}

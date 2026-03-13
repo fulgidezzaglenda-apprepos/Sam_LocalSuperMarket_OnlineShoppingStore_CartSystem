@@ -1,0 +1,167 @@
+﻿@model Tuple<List<Sam_LocalSuperMarket_OnlineShoppingStore1.Models.ShoppingCart>, 
+       List<Sam_LocalSuperMarket_OnlineShoppingStore1.Models.ShoppingCart>>
+
+@{
+    ViewData["Title"] = "CartHistory";
+    //Checks whether the current user is logged in or not.
+    bool Authenticated = Context.User != null && Context.User.Identity.IsAuthenticated;
+    bool isAdmin = Context.User.IsInRole("Admin");
+    var user = Context.User.Identity.Name;
+    string SessionId = Context.Session.Id;
+}
+
+<div>
+    @Html.ActionLink("Back to List of Products", "Category", "Home")
+</div>
+
+<div class="container theme-text" style="border:solid; width: 2000px; height:725px; padding-left:20px; padding-top:20px">
+    <div class="row">
+        <div class="col-md-6" style="align-content:flex-start; border:solid; width:300px; height:600px; padding-left:15px; padding-top: 25px;">
+            <h4 class="theme-text"> Your Profile </h4>
+            <div class="table-container theme-text">
+                <form action="/action_page.php">
+                    <fieldset>
+                        <legend>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span class="user-name">@User.Identity.Name</span>
+                            }
+                        </legend>
+                        <hr />
+                        <h5 class="theme-text"> Customer Detail Information</h5>
+                        <h6> Postal Address: </h6>
+                        <h6> Shipping Address:</h6>
+                        <form action="/action_page.php">
+                            <label for="cars" style="font-size:large; font-display:block"> Payment Method: </label>
+                            <select id="cars" name="cars" class="bg-theme-colour-4 theme-text">
+                                <option value="CC">Credit Card</option>
+                                <option value="DC">Debit Card</option>
+                                <option value="PP">PayPal</option>
+                                <option value="E">Other</option>
+                            </select>
+                        </form>
+                    </fieldset>
+                </form>
+                <p style="padding-top:125px; font-size:large; font-palette:dark"> Return and refund policies</p>
+                <form action="/action_page.php">
+                    <input type="checkbox" id="read" name="policy" value="READ">
+                    <label for="Read">Read</label><br>
+                    <input type="checkbox" id="acknowledge" name="policy" value="Acknowledge">
+                    <label for="Acknowledge">Acknowledge</label><br>
+                    <input type="checkbox" id="confirm" name="policy" value="Cornfirm">
+                    <label for="Confirm">Confirm</label><br><br>
+                </form>
+                <div>
+                    @* <button type="button" class="bg-transparent" onclick="alert"> EDIT </button> *@
+                    <a class="add-button-item btn btn-success bg-transparent tr" style="background-color:lemonchiffon"
+                    @* style="color:darkorange; font-size:x-large;"
+                    asp-area="" asp-controller="Home" asp-action="AboutUs" *@> EDIT </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-top:30px">
+            <h4> Shopping Cart History </h4>
+            <hr />
+            <!-- Cart History Table Goes Here -->
+            <div class="table-container" style="width:150%; overflow-x:auto; overflow-y:auto; max-height: 500px;">
+                <form>
+                    @if (Model.Item1.Count > 0 || Model.Item2.Count > 0)
+                    {
+                        <table class="table table-bordered  theme-text" style="border:groove">
+                            <!-- Table headers -->
+                            <thead style="text-align:center">
+                                <tr>
+                                    <th style="width:20%"> Shopping Cart Id </th>
+                                    <th style="width:20%"> Date Cart Finalized </th>
+                                    <th style="width:20%"> Date Cart Cancelled </th>
+                                    <th style="width:20%"> Total Cart Sale </th>
+                                    <th> Link for Cart Items </th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody style="text-align:center">
+                                @foreach (var cart in Model.Item1)
+                                {
+                                    <tr class="tr">
+                                        <td>@cart.Id</td>
+                                        <td>@(cart.IsFinalised ? cart.Date?.ToShortDateString() : "")</td>
+                                        <td>@(cart.IsCancelled ? cart.Date?.ToShortDateString() : "")</td>
+                                        <td>@cart.Total</td>
+                                        <td>
+                                            <a href="#" onclick="fetchCartDetails(@cart.Id)">View Cart Details</a>
+                                        </td>
+                                    </tr>
+                                }
+                                @foreach (var cart in Model.Item2)
+                                {
+                                    <tr class="tr">
+                                        <td>@cart.Id</td>
+                                        <td>@(cart.IsFinalised ? cart.Date?.ToShortDateString() : "")</td>
+                                        <td>@(cart.IsCancelled ? cart.Date?.ToShortDateString() : "")</td>
+                                        <td>@cart.Total</td>
+                                        <td>
+                                            <a href="#" onclick="fetchCartDetails(@cart.Id)">View Cart Details</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No previous shopping carts found.</p>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal for our cart view that will hold our _CartDetailsPartial view-->
+<div class="modal right fade" id="cartHistory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content" style="background-color:navajowhite">
+            <div class="modal-header" style="background-color:khaki">
+                <h5 class="modal-title fs-5" id="staticBackdropLabel">
+                    Customer's Cart: @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="user-name">@User.Identity.Name</span>
+                    }
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="color:black" id="cartHistoryModalBody">
+           
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function fetchCartDetails(cartId) {
+            alert('Function called with cartId: ' + cartId);
+            $.ajax({
+                url: '@Url.Action("CartHistoryPartial", "ShoppingCart")',
+                type: 'GET',
+                data: { cartId: cartId },
+                success: function (data) {
+                    $('#cartHistoryModalBody').html(data);
+                    $('#cartHistory').modal('show');
+                },
+                error: function () {
+                    alert('Error fetching cart details.');
+                }
+            });
+        }
+    </script>
+}
+
+<script src="~/js/products.js" asp-append-version="true"></script>
+<script src="~/js/cartdetails.js" asp-append-version="true"></script>
+
