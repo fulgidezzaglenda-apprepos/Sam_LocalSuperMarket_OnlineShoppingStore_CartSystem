@@ -2,7 +2,7 @@
 {
     public class CartViewDetails
     {
-        public IEnumerable<ShoppingCart> FinalizedCarts { get; set; }
-        public IEnumerable<ShoppingCart> CancelledCarts { get; set; }
+        public IEnumerable<ShoppingCart> FinalizedCarts { get; set; } = null;
+        public IEnumerable<ShoppingCart> CancelledCarts { get; set; } = null;
     }
 }

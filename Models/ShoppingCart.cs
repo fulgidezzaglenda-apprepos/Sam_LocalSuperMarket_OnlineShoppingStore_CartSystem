@@ -16,7 +16,7 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Models
 		public bool IsCancelled { get; set; } = false;
 
 		//Linking references to the other tables that this table has a relationship with.
-		public virtual User CartUser { get; set; }
-		public virtual List<ShoppingCartItem> CartItems { get; set; }
+		public virtual User CartUser { get; set; } = null;
+		public virtual List<ShoppingCartItem> CartItems { get; set; } = null;
     }
 }

@@ -8,8 +8,8 @@
 		public int Quantity { get; set; }
 
 		//Linking references to the other tables that this tbale has a relationship with.
-		public virtual ShoppingCart Cart { get; set; }
-		public virtual Products ProductsItem { get; set; }
+		public virtual ShoppingCart Cart { get; set; } = null; 
+		public virtual Products ProductsItem { get; set; } = null;
 
 	}
 }

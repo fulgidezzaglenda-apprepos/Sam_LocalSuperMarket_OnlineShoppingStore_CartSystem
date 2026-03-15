@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Sam_LocalSuperMarket_OnlineShoppingStore1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,11 +8,28 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// var connString = builder.Configuration.GetConnectionString("Default");
+// builder.Services.AddDbContext<SamOnlineShoppingStoreDBContext>(contextOptions =>
+// {
+//     //contextOptions.UseSqlServer(connString);
+
+//     contextOptions.UseMySql(
+//     connString,
+//     new MySqlServerVersion(new Version(9, 6, 0)) // replace 8.0.33 with your MySQL version
+//     );
+// });
+
 var connString = builder.Configuration.GetConnectionString("Default");
+
 builder.Services.AddDbContext<SamOnlineShoppingStoreDBContext>(contextOptions =>
 {
-    contextOptions.UseSqlServer(connString);
+    contextOptions.UseMySql(
+        connString,
+        ServerVersion.AutoDetect(connString)
+    );
 });
+
+
 
 builder.Services.AddSession(options =>
 {

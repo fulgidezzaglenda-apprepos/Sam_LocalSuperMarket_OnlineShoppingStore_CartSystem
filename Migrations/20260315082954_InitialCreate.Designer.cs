@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sam_LocalSuperMarket_OnlineShoppingStore1.Data;
@@ -12,8 +11,8 @@ using Sam_LocalSuperMarket_OnlineShoppingStore1.Data;
 namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
 {
     [DbContext(typeof(SamOnlineShoppingStoreDBContext))]
-    [Migration("20240425050300_initial Migrations")]
-    partial class initialMigrations
+    [Migration("20260315082954_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +20,7 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Sam_LocalSuperMarket_OnlineShoppingStore1.Data.User", b =>
                 {
@@ -31,19 +28,17 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -53,14 +48,14 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         new
                         {
                             Id = 1,
-                            PasswordHash = "$2a$11$QE3SGagGwvzlSAmZhE6o8uqzFhfwP2bfwQFZtVJBnpB1rDDJITVB.",
+                            PasswordHash = "$2a$11$sKyvVCLFoOAlorqabc8ExOw4otyDlqxgQK7WXMYF.Dl8.N4CJxgo6",
                             Role = "User1",
                             UserName = "Test"
                         },
                         new
                         {
                             Id = 2,
-                            PasswordHash = "$2a$11$DuWV/7qPhBJH5KXd5CRMIuTzS16PPQm4n0xJjM3/T1Nksot8/FPqG",
+                            PasswordHash = "$2a$11$5gflcb8NKkpE5v9ud9Rx.epIaHliPKIdRG3fxSIeRTlhc6MyVSEOu",
                             Role = "User2",
                             UserName = "Test1"
                         });
@@ -72,14 +67,12 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ImageCategory")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -142,24 +135,22 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ItemName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Unit")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -563,19 +554,17 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsCancelled")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsFinalised")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<double?>("Total")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -590,7 +579,7 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2024, 4, 25, 15, 3, 0, 427, DateTimeKind.Local).AddTicks(5105),
+                            Date = new DateTime(2026, 3, 15, 18, 29, 54, 733, DateTimeKind.Local).AddTicks(4680),
                             IsCancelled = false,
                             IsFinalised = false,
                             Total = 25.0,
@@ -603,8 +592,6 @@ namespace Sam_LocalSuperMarket_OnlineShoppingStore1.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ProductsId")
                         .HasColumnType("int");
