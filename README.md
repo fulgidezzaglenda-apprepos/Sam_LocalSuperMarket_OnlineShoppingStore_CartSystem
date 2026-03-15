@@ -1,4 +1,4 @@
-# Online Shopping Store with Cart System
+# Online Shopping Store with Cart System - ASP.NET Core + MySQL
 
 ## Project Description
 
@@ -137,8 +137,46 @@ Key Components:
 4. Application runs on:
    * hhtp://localhost:5220
   
+## Future Developments
+
+Possible future improvements include:
+* Password hashing and authentication security
+* Admin panel for managing products
+* Product image uploads
+* REST APIs endpoints
+* Payment gateway integration
+* Docker container deployment
+  
 ## Screenshots
 
+### Home Page
+![Home Page](Screenshots/Home.png)
+
+### Register Page
+![Register Page](Screenshots/Register.png)
+
+### Login Page
+![Login Page](Screenshots/Login.png)
+
+### Category List
+![Category List](Screenshots/CategoryList.png)
+
+### Product List
+![Product List](Screenshots/ProductList.png)
+
+### Shopping Cart
+![Cart System](Screenshots/CartSystem.png)
+
+### Cart History
+![Cart History](Screenshots/CartHistory.png)
+
+### Database Tables
+![DB Tables](Screenshots/DBTables.png)
+![DB Users](Screenshots/DBUsers.png)
+![DB Category](Screenshots/DBCategory.png)
+![DB Products](Screenshots/DBProducts.png)
+![DB ShoppingCart](Screenshots/DBShoppingCart.png)
+![DB ShoppingCartItems](Screenshots/DBShoppingCartItems.png)
 
 ## Author
 
